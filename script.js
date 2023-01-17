@@ -1,16 +1,13 @@
-// Create arrays for the different password characters. I was inspired to use this strategy by this tutorial: 
+// Create arrays for the different characters using ASCII character codes. I was inspired to use this strategy by this tutorial: 
 https://www.youtube.com/watch?v=iKo9pDKKHnc&t=176s
 
 var lengthInput = 8;
-var lcInput = [];
-var ucInput = [];
-var numInput = [];
-var scInput = [];
+var inputChar = [];
 
 var lcCharCodes = arrayLowToHigh(65, 90)
-var upCharCodes = arrayLowToHigh(97, 122)
-var numCharCodes = arrayLowToHigh(48-57)
-var scCharCodes = arrayLowToHigh(33,47).concat(arrayLowToHigh(58-64).concat(arrayLowToHigh(91, 96).concat(arrayLowToHigh(123, 126)))
+var ucCharCodes = arrayLowToHigh(97, 122)
+var numCharCodes = arrayLowToHigh(48, 57)
+var scCharCodes = arrayLowToHigh(33, 47).concat(arrayLowToHigh(58, 64).concat(arrayLowToHigh(91, 96).concat(arrayLowToHigh(123, 126))))
 
 // Assignment Code
 // Create button for password selector
@@ -22,13 +19,15 @@ var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
 
 
-// Display/Write password to the #password input
+// Display/Write password to the #password input 
+// call function to start prompts with getInput
+// call function to generate password
 function writePassword() {
-  var promptInputs = getPrompts();
-  var password = generatePassword();
+  includeInput();
+  var userPassword = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = userPassword;
 
 }
 
@@ -36,72 +35,51 @@ function writePassword() {
 
 // I was inspired by this tutorial to understand how to generate a randomized password: https://www.youtube.com/watch?v=v2jfGo7ztm8&list=WL&index=3
 
-Function: generatePassword();
 
-// function generatePassword(lengthInput, lcInput, upInput, numInput, scInput) {
-//   let (lcInput) = lcCharCodes
-//   if (ucInput) charCodes = charCodes.concat (upCharCodes)
-//   if (scInput) charCodes = charCodes.concat (scCharCodes)
-//   if (numInput) charCodes = charCodes.concat (numCharCodes)
-  
-//   for (let i = 0; i + lengthInput; i++) {
-//     var charCode= charCodes[Math.floor(Math.random() * charCodes.length)]
-//     passwordCharacters.push(String.fromCharCode(charCodes))
-//     }
-  
-//   return passwordCharacters.join('')
-// }
+function generatePassword () {
+  var password = "";
+  for (let i = 0; i < lengthInput; i++) {
+    var randomChar = Math.floor(Math.random() * inputChar.length);
+    password = password + inputChar[randomChar];  
+  }
+  return password.join('')
+} 
 
-// function arrayLowToHigh(low, high){
-//   var array = []
-//   for (let i = low; i <=high; i++) {
-//       array.push(i)
-//   }
-//   return array
-// }
-
-
-
-// Prompt: length, at least 8 to 128 characters
-//open prompt window with text
-function getPrompts(){
-  lengthInput = +(window.prompt ("Choose length of password (8 to 128 characters"));
-
+// function to organize arrays from low to high
+function arrayLowToHigh(low, high){
+  var array = []
+  for (let i = low; i <=high; i++) {
+      array.push(i)
+  }
+  return array
 }
 
-// Function --use this number to set password length
-// length is the number of characters allowed in the password
-// let passwordLength = lengthInput;
-// let password = '';
 
-var lengthInput = (window.prompt ("Choose length of password (8 to 128 characters"));
+// Prompt user to enter length, at least 8 to 128 characters
+//open prompt window with text
+
+function includeInput(){
+  inputChar = [];
+
+  lengthInput = parseInt(window.prompt ("Choose length of password (8 to 128 characters)"));
 
 // Prompt: character types, lowercase, uppercase, numeric, and/or special characters
-var lcInput = (window.prompt ("Include lowercase letters?"));
+  if (confirm("Include lowercase letters?")) {
+    inputChar = inputChar.concat(lcCharCodes);
+  }
 
-var ucInput = (window.prompt ("Include uppercase letters?")); 
+  if (confirm("Include uppercase letters?")) {
+    inputChar = inputChar.concat(ucCharCodes);
+  }
 
-var numInput =(window.prompt ("Include numbers?"));
+  if (confirm("Include numbers?")) {
+    inputChar = inputChar.concat(numCharCodes);
+  }
 
-var scInput =(window.prompt ("Include special characters?"));
+  if (confirm("Include special characters?")) {
+    inputChar = inputChar.concat(scCharCodes);
+  }
+  return true
+}
 
-
-
-
-
-// At least one character type selected
-// if ... proceed
-// else (!userChoice) {
-//   return;
-// }
-
-
-// generate password
-// Form.addEventListener('sumbit', e => {
- 
-//    password =generatePassword(length, lcInput, upInput, numInput, scInput)
-
-// })
-
-// e.preventDefault();
 
