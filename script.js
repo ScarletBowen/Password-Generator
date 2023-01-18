@@ -1,7 +1,7 @@
 // Create arrays for the different characters using ASCII character codes. I was inspired to use this strategy by this tutorial: 
 https://www.youtube.com/watch?v=iKo9pDKKHnc&t=176s
 
-var lengthInput = 8;
+var inputAmount = 8;
 var inputChar = [];
 
 var lcCharCodes = arrayLowToHigh(65, 90)
@@ -24,10 +24,10 @@ generateBtn.addEventListener("click", writePassword);
 // call function to generate password
 function writePassword() {
   includeInput();
-  var userPassword = generatePassword();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = userPassword;
+  passwordText.textContent = password;
 
 }
 
@@ -35,14 +35,22 @@ function writePassword() {
 
 // I was inspired by this tutorial to understand how to generate a randomized password: https://www.youtube.com/watch?v=v2jfGo7ztm8&list=WL&index=3
 
-
+// problems to solve--password length is not working; also character codes need to be made into a string
 function generatePassword () {
-  var password = "";
-  for (let i = 0; i < lengthInput; i++) {
-    var randomChar = Math.floor(Math.random() * inputChar.length);
-    password = password + inputChar[randomChar];  
+  var password = [];
+  for (let i = 0; i < inputAmount; i++) {
+    var randomChar = inputChar[Math.floor(Math.random() * inputChar.length)]
+    console.log(String.fromCharCode(randomChar), inputChar, Math.floor(Math.random() * inputChar))
+    password.push(String.fromCharCode(randomChar))
+
+    console.log("array with all password criteria")
+
+    // = password + inputChar[randomChar];
+
   }
+console.log(password.join(''))
   return password.join('')
+  
 } 
 
 // function to organize arrays from low to high
@@ -61,7 +69,7 @@ function arrayLowToHigh(low, high){
 function includeInput(){
   inputChar = [];
 
-  lengthInput = parseInt(window.prompt ("Choose length of password (8 to 128 characters)"));
+  inputAmount = parseInt(window.prompt ("Choose length of password (8 to 128 characters)"));
 
 // Prompt: character types, lowercase, uppercase, numeric, and/or special characters
   if (confirm("Include lowercase letters?")) {
@@ -81,5 +89,5 @@ function includeInput(){
   }
   return true
 }
-
+ 
 
