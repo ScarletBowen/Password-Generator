@@ -20,18 +20,15 @@ generateBtn.addEventListener("click", writePassword);
 
 
 // Display/Write password to the #password input 
-// call function to start prompts with getInput
+// call function to start prompts with includeInput
 // call function to generate password
 function writePassword() {
   includeInput();
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.textContent = password;
 
 }
-
-// Do I need to add this somewhere?  e.preventDefault();
 
 // I was inspired by this tutorial to understand how to generate a randomized password: https://www.youtube.com/watch?v=v2jfGo7ztm8&list=WL&index=3
 
@@ -43,12 +40,10 @@ function generatePassword () {
     console.log(String.fromCharCode(randomChar), inputChar, Math.floor(Math.random() * inputChar))
     password.push(String.fromCharCode(randomChar))
 
-    console.log("array with all password criteria")
-
     // = password + inputChar[randomChar];
 
   }
-console.log(password.join(''))
+    // console.log(password.join(''))
   return password.join('')
   
 } 

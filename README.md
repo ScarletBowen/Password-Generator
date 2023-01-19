@@ -1,6 +1,10 @@
 # Password Generator
 
-## Modify starter code to create a Password Generator application
+## Modified starter code to create a Password Generator application
 
-###Enables users to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
+## Application enables users to generate random passwords based on criteria that they’ve selected. This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. It has a clean and polished, responsive user interface that adapts to multiple screen sizes.
+
+Webpage in Gitpages:
+
+
 
